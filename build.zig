@@ -13,7 +13,11 @@ pub fn build(b: *std.Build) void {
     });
 
     exe.linkSystemLibrary("SDL3");
+
+    exe.addLibraryPath(.{ .cwd_relative = "thirdparty/SDL/lib" });
     exe.addIncludePath(.{ .cwd_relative = "thirdparty/SDL/include" });
+
+    exe.linkLibCpp();
 
     b.installArtifact(exe);
 
